@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* variables de color y tamaño */
+            --white: #ffffff;
+            --black: #000000;
+            --very-light-pink: #c7c7c7;
+            --text-input-field: #f7f7f7;
+            --hospital-green: #acd982;
+            --sm: 14px;
+            --md: 16px;
+            --lg: 18px;
+        }
+        body{
+            /* acá le estamos quitando las margenes y trayendo la fuente del proyeco */
+            margin: 0;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .login {
+            /* acá estamos centrando los elementos en el centro de la pantallade una manera super facil
+            solo con dos propiedades. display grid y place-items center */
+            width: 100%;
+            height: 100vh;
+            display: grid;
+            /* place-items, tiene cinco propiedades que deriban de alieng-items y justify-items
+            buscar mas https://developer.mozilla.org/en-US/docs/Web/CSS/place-items
+            1- center: me centra el contenido en toda la mitad de la pantalla sin importar que tan grande es siempre va a estar en el centro 
+            2- center stretch: elementos estan en el centro desde el borde izquierdo ocupando el width del elemento si hay mas elementos se colocan a la izquierda hasta que se acabe el width de la pantalla y si se acaba buelve a iniciar en la fila de abajo desde la izquierda nuevamente 
+            3- center start: elemento aderido encentro izquierda ocupando el espacio del contenido del elemento
+            4- start end: elemento inicio de la pantalla arriba derecha 
+            5- end center: centro de la pantalla abajo de la misma 
+             */
+            place-items: center;
+        }
+        .form-container {
+            /* estamos creando un sistema de filas para eso usamos grid-emplate-rows y cada una de esas filas auto para que ocupe  el tamaño que el desee después 1f significa una fraccion y el siguiente auto es para que ocupe lo que falte */
+            display: grid;
+            /* cada valor pusto en el atributo grid-template-rows se pone por el numero de filas que hay en nuestro layut en este caso 4 filas <img>, <H1>, <p>, <form>  */
+            grid-template-rows: auto auto 1fr auto;
+            /* este width es para que se adecue tambien a las pantallas que son mas pequeñas lo que hicimos fue dejar nuestro contenido de un maximo de 300px */
+            width: 300px;
+        }
+        .logo{
+            /* tamaño del logo */
+            width: 150px;
+            /* margen de abajo */
+            margin-bottom: 48px;
+            /* centrar el logo */
+            justify-self: center;
+            /* para que no aparezca en el desktop masa abajo se implementa con @media para que aparezca solo en pantallas pequeñas  */
+            display: none;
+        }
+        .title {
+            font-size: var(--lg);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .subtitle {
+            /* estamos usando la variable de color */
+            color: var(--very-light-pink);
+            /* estamos usando la variable de tamaño para el subtitulo */
+            font-size: var(--md);
+            /* este fue uno de los enlaces que tragimos de google para las fuentes  */
+            font-weight: 300;
+            /* este margin 0 es para que no se cruce con los margenes que ya tienen los parafos por defecto el */
+            margin-top: 0;
+            /* aca estamos separando el subtitulo de los labels */
+            margin-bottom: 32px;
+            /* estoy centrando el texto */
+            text-align: center;
+        }
+        .form {
+            /* cuando usamos desplay flex, se me ponen los elementos uno al lado del otro pero como eso no es lo que se quiere se le cambia la direccion con felx direccion*/
+            display: flex;
+            /* le cambiamos la direccion para que nos los muestre en columnas  */
+            flex-direction: column;
+        }
+        .label {
+            font-size: var(--sm);
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .input {
+            background-color: var(--text-input-field);
+            /* aca estamos diciendo que no queremos el borde que viene por defecto para después ponerle el borde radius */
+            border: none;
+            /* redondeando bordes de los inputs */
+            border-radius: 8px;
+            height: 30px;
+            font-size: var(--md);
+            padding: 6px;
+            margin-bottom: 12px;
+        }
+        .primary-button {
+            background-color: var(--hospital-green);
+            border-radius: 8px;
+            /* quita el borde negro que viene por defecto para poder que quede es solo badgraund-color que nosotros le pusimos */
+            border: none;
+            color: var(--white);
+            width: 100%;
+            /* este cursor pointer es para que caundo pasemos por arriba del boton ya no me salga la flecha sino una manito indicando que estoy arriba del boton */
+            cursor: pointer;
+            font-size: var(--md);
+            font-weight: bold;
+            height: 50px;
+        }
+        .login-button {
+            margin-top: 14px;
+            margin-bottom: 30px;
+        }
+        /* por que un max-width y no un min-width? 
+        porque todos los estilos  de acá para arriba van a funcionar pra todas las medidas que pasen el valor que yo le ponga al max-width y los estilos que ponga dentro del @media van a funcionar para la medida que ponga como valor y hacia abajo de la misma */
+        @media (max-width: 640px) {
+            .logo {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- En este caso estamos usando dos contenedores uno para el formulario y otro para toda la vista del login y asi poder centrar todos nuestros elementos-->
+    <!-- la clase login es nuestra clase principal y esta es la que nos va a permitir centrar todos nuestros elementos -->
+    <div class="login">
+        <div class="form-container">
+            <!-- la clase form-container es la que nos ayuda a encapsular todos nuestros elementos -->
+            <img src="./logos/logo_yard_sale.svg" alt="logo" class="logo">
+
+            <h1 class="title">Create a new password</h1>
+            <p class="subtitle">Enter a new password for your account</p>
+            <form action="/" class="form">
+                <!-- en formulario estamos usando dos clases una global para todos los inputs "input" y otra especifica para cada una de ellos, esto con el fin de que podamos realizar ya cambios generales o especificos segun sea la necesidad -->
+                <label for="password" class="label">password</label>
+                <input type="password" id="password" placeholder="*********" class="input input-password">
+
+                <label for="new-password" class="label">password</label>
+                <input type="password" id="new-password" placeholder="*********" class="input input-password">
+
+                <!-- En un formulario tambien podemos colocar un imput como se fuera un boton. Para poderlo hacer el imput debe ser de tipo submit y esto es gracias a que estamos usando para el formulario la etiqueta form -->
+                <input type="submit" value="Confirm" class="primary-button login-button">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* variables de color y tamaño */
+            --white: #ffffff;
+            --black: #000000;
+            --very-light-pink: #c7c7c7;
+            --text-input-field: #f7f7f7;
+            --hospital-green: #acd982;
+            --sm: 14px;
+            --md: 16px;
+            --lg: 18px;
+        }
+        body{
+            /* acá le estamos quitando las margenes y trayendo la fuente del proyeco */
+            margin: 0;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .login {
+            /* acá estamos centrando los elementos en el centro de la pantallade una manera super facil
+            solo con dos propiedades. display grid y place-items center */
+            width: 100%;
+            height: 100vh;
+            display: grid;
+            /* place-items, tiene cinco propiedades que deriban de alieng-items y justify-items
+            buscar mas https://developer.mozilla.org/en-US/docs/Web/CSS/place-items
+            1- center: me centra el contenido en toda la mitad de la pantalla sin importar que tan grande es siempre va a estar en el centro 
+            2- center stretch: elementos estan en el centro desde el borde izquierdo ocupando el width del elemento si hay mas elementos se colocan a la izquierda hasta que se acabe el width de la pantalla y si se acaba buelve a iniciar en la fila de abajo desde la izquierda nuevamente 
+            3- center start: elemento aderido encentro izquierda ocupando el espacio del contenido del elemento
+            4- start end: elemento inicio de la pantalla arriba derecha 
+            5- end center: centro de la pantalla abajo de la misma 
+             */
+            place-items: center;
+        }
+        .form-container {
+            /* estamos creando un sistema de filas para eso usamos grid-emplate-rows y cada una de esas filas auto para que ocupe  el tamaño que el desee después 1f significa una fraccion y el siguiente auto es para que ocupe lo que falte */
+            display: grid;
+            /* cada valor pusto en el atributo grid-template-rows se pone por el numero de filas que hay en nuestro layut en este caso 4 filas <img>, <H1>, <p>, <form>  */
+            grid-template-rows: auto auto 1fr auto;
+            /* este width es para que se adecue tambien a las pantallas que son mas pequeñas lo que hicimos fue dejar nuestro contenido de un maximo de 300px */
+            width: 300px;
+            /* aca lo que estamos haciendo es centrando nuestros elementos de form-container */
+            justify-items: center;
+        }
+        .logo{
+            /* tamaño del logo */
+            width: 150px;
+            /* margen de abajo */
+            margin-bottom: 48px;
+            /* centrar el logo */
+            justify-self: center;
+            /* para que no aparezca en el desktop masa abajo se implementa con @media para que aparezca solo en pantallas pequeñas  */
+            display: none;
+        }
+        .title {
+            font-size: var(--lg);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .subtitle {
+            /* estamos usando la variable de color */
+            color: var(--very-light-pink);
+            /* estamos usando la variable de tamaño para el subtitulo */
+            font-size: var(--md);
+            /* este fue uno de los enlaces que tragimos de google para las fuentes  */
+            font-weight: 300;
+            /* este margin 0 es para que no se cruce con los margenes que ya tienen los parafos por defecto el */
+            margin-top: 0;
+            /* aca estamos separando el subtitulo de los labels */
+            margin-bottom: 32px;
+            /* estoy centrando el texto */
+            text-align: center;
+        }
+        .email-image {
+            /* aca lo que estamos haciendo es estilizar la imagen de email donde le estamos agregando un circulo del color gris atras del icono y lo estamos centrando el border radius del 50% lo que hace es que nos crea el circulo y el width y heigth nos esta poniendo la caja en forma de cuadrado */
+            width: 132px;
+            height: 132px;
+            border-radius: 50%;
+            background-color: var(--text-input-field);
+            /* aca estamos centrando el icono dentro del circulo gris que hicimos */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        .email-image img {
+            /* aca lo que estamos haciendo es cambiando el tamaño de la imagen que esta dentro del circulo */
+            width: 80px;
+        }
+        .resend {
+            /* a  la clase resend le agregamos la variable de la letra mas pequeña prestablecida en la parte de arriba, la cual fue descargade de internet anteriormente */
+            font-size: var(--sm);
+        }
+        .resend span {
+            /* aca le agrgamos color a la etiqueta span que esta dentro de la clase resend */
+            color: var(--very-light-pink);
+        }
+        .resend a {
+            /* aca le agregamos color a la etiqueta a que esta dentro de la clase resend y le quitamos la linea que tiene por defecto */
+            color: var(--hospital-green);
+            text-decoration: none;
+        }
+        .primary-button {
+            background-color: var(--hospital-green);
+            border-radius: 8px;
+            /* quita el borde negro que viene por defecto para poder que quede es solo badgraund-color que nosotros le pusimos */
+            border: none;
+            color: var(--white);
+            width: 100%;
+            /* este cursor pointer es para que caundo pasemos por arriba del boton ya no me salga la flecha sino una manito indicando que estoy arriba del boton */
+            cursor: pointer;
+            font-size: var(--md);
+            font-weight: bold;
+            height: 50px;
+        }
+        .login-button {
+            margin-top: 14px;
+            margin-bottom: 30px;
+        }
+        /* por que un max-width y no un min-width? 
+        porque todos los estilos  de acá para arriba van a funcionar pra todas las medidas que pasen el valor que yo le ponga al max-width y los estilos que ponga dentro del @media van a funcionar para la medida que ponga como valor y hacia abajo de la misma */
+        @media (max-width: 640px) {
+            .logo {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- En este caso estamos usando dos contenedores uno para el formulario y otro para toda la vista del login y asi poder centrar todos nuestros elementos-->
+    <!-- la clase login es nuestra clase principal y esta es la que nos va a permitir centrar todos nuestros elementos -->
+    <div class="login">
+        <div class="form-container">
+            <!-- la clase form-container es la que nos ayuda a encapsular todos nuestros elementos -->
+            <img src="./logos/logo_yard_sale.svg" alt="logo" class="logo">
+
+            <h1 class="title">Email has been sent!</h1>
+            <p class="subtitle">Please check your inbox for instrctions on how to reset the password</p>
+            <div class="email-image">
+                <img src="./icons/email.svg" alt="email">
+            </div>
+            <button class="primary-button login-button">Login</button>
+            <p class="resend">
+                <!-- la etiqueta span es para poner en negrita un texto -->
+                <span>Didn't recesive the email?</span>
+                <a href="/">Resend</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
