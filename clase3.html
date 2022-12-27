@@ -45,7 +45,7 @@
             /* estamos creando un sistema de filas para eso usamos grid-emplate-rows y cada una de esas filas auto para que ocupe  el tamaño que el desee después 1f significa una fraccion y el siguiente auto es para que ocupe lo que falte */
             display: grid;
             /* cada valor pusto en el atributo grid-template-rows se pone por el numero de filas que hay en nuestro layut en este caso 4 filas <img>, <H1>, <p>, <form>  */
-            grid-template-rows: auto auto 1fr auto;
+            grid-template-rows: auto auto 1fr;
             /* este width es para que se adecue tambien a las pantallas que son mas pequeñas lo que hicimos fue dejar nuestro contenido de un maximo de 300px */
             width: 300px;
         }
@@ -127,6 +127,11 @@
             .logo {
                 display: block;
             }
+            .secondary-button {
+                position: absolute; /*absoluto al form.container*/
+                bottom: 2%; /*bottom sirve para ubicarlos absolutamente dentro del contenedor padre la medida en porcentaje hace que sea adapte a cualquier pantalla */
+                width: inherit; /*hereda el width de form.container, sino tendría el tamaño de la clase .login*/
+            }
         }
     </style>
 </head>
@@ -152,7 +157,7 @@
                 <a href="/">Forgot my password</a>
             </form>
 
-            <button class="secondary-button">Sing up</button>
+            <button class="secondary-button signup-button">Sing up</button>
         </div>
     </div>
 </body>
