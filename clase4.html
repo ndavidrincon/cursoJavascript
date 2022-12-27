@@ -48,66 +48,43 @@
             grid-template-rows: auto 1fr auto;
             /* este width es para que se adecue tambien a las pantallas que son mas pequeñas lo que hicimos fue dejar nuestro contenido de un maximo de 300px */
             width: 300px;
-            /* aca lo que estamos haciendo es centrando nuestros elementos de form-container */
-            justify-items: center;
-        }
-        .logo{
-            /* tamaño del logo */
-            width: 150px;
-            /* margen de abajo */
-            margin-bottom: 48px;
-            /* centrar el logo */
-            justify-self: center;
-            /* para que no aparezca en el desktop masa abajo se implementa con @media para que aparezca solo en pantallas pequeñas  */
-            display: none;
         }
         .title {
             font-size: var(--lg);
-            margin-bottom: 12px;
-            text-align: center;
+            margin-bottom: 36px;
+            text-align: start;
         }
-        .subtitle {
-            /* estamos usando la variable de color */
-            color: var(--very-light-pink);
-            /* estamos usando la variable de tamaño para el subtitulo */
-            font-size: var(--md);
-            /* este fue uno de los enlaces que tragimos de google para las fuentes  */
-            font-weight: 300;
-            /* este margin 0 es para que no se cruce con los margenes que ya tienen los parafos por defecto el */
-            margin-top: 0;
-            /* aca estamos separando el subtitulo de los labels */
-            margin-bottom: 32px;
-            /* estoy centrando el texto */
-            text-align: center;
-        }
-        .email-image {
-            /* aca lo que estamos haciendo es estilizar la imagen de email donde le estamos agregando un circulo del color gris atras del icono y lo estamos centrando el border radius del 50% lo que hace es que nos crea el circulo y el width y heigth nos esta poniendo la caja en forma de cuadrado */
-            width: 132px;
-            height: 132px;
-            border-radius: 50%;
-            background-color: var(--text-input-field);
-            /* aca estamos centrando el icono dentro del circulo gris que hicimos */
+        .form {
+            /* cuando usamos desplay flex, se me ponen los elementos uno al lado del otro pero como eso no es lo que se quiere se le cambia la direccion con felx direccion*/
             display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 24px;
+            /* le cambiamos la direccion para que nos los muestre en columnas  */
+            flex-direction: column;
         }
-        .email-image img {
-            /* aca lo que estamos haciendo es cambiando el tamaño de la imagen que esta dentro del circulo */
-            width: 80px;
+        .form div {
+            /* seimpre los padres deben tener display flex para que pueda funcionar. esto es para separar las cajas que estan dentro de form pero si lo que buscamos es separar cada una de esas cajas debemos ver lo que hice en el @media de este documento porque el cambio solo lo quiero para movil no para descktop */
+            display: flex;
+            flex-direction: column;
         }
-        .resend {
-            /* a  la clase resend le agregamos la variable de la letra mas pequeña prestablecida en la parte de arriba, la cual fue descargade de internet anteriormente */
+        .label {
             font-size: var(--sm);
+            font-weight: bold;
+            margin-bottom: 4px;
         }
-        .resend span {
-            /* aca le agrgamos color a la etiqueta span que esta dentro de la clase resend */
-            color: var(--very-light-pink);
+        .input {
+            background-color: var(--text-input-field);
+            /* aca estamos diciendo que no queremos el borde que viene por defecto para después ponerle el borde radius */
+            border: none;
+            /* redondeando bordes de los inputs */
+            border-radius: 8px;
+            height: 30px;
+            font-size: var(--md);
+            padding: 6px;
+            margin-bottom: 12px;
         }
-        .resend a {
-            /* aca le agregamos color a la etiqueta a que esta dentro de la clase resend y le quitamos la linea que tiene por defecto */
-            color: var(--hospital-green);
-            text-decoration: none;
+        .input-name,
+        .input-email,
+        .input-password {
+            margin-bottom: 22px;
         }
         .primary-button {
             background-color: var(--hospital-green);
@@ -129,8 +106,14 @@
         /* por que un max-width y no un min-width? 
         porque todos los estilos  de acá para arriba van a funcionar pra todas las medidas que pasen el valor que yo le ponga al max-width y los estilos que ponga dentro del @media van a funcionar para la medida que ponga como valor y hacia abajo de la misma */
         @media (max-width: 640px) {
-            .logo {
-                display: block;
+            .form-container {
+                height: 100%;
+            }
+            .form {
+                /* el height es para que tenga un alto del 100% */
+                height: 100%;
+                /* y el justify-content: space-between es para separar los dos elementos hijos */
+                justify-content: space-between;
             }
         }
     </style>
@@ -140,20 +123,25 @@
     <!-- la clase login es nuestra clase principal y esta es la que nos va a permitir centrar todos nuestros elementos -->
     <div class="login">
         <div class="form-container">
-            <!-- la clase form-container es la que nos ayuda a encapsular todos nuestros elementos -->
-            <img src="./logos/logo_yard_sale.svg" alt="logo" class="logo">
+            <h1 class="title">My account</h1>
+            <form action="/" class="form">
+                <!-- como lo que queremos es poner el boton create que en este caso es un input de tipo submit bien pegado a la parte de abajo, podemos modificar el contenido de form para que tenga 2 cajas y no 1 con el objetivo de poder modificar las cajas independientemente.
+                tener en cuenta que cuando hago esto el archivo se rompe porque los cambios flex que teniamos hasta el momento eran de tipo flex y para esos cambios se ejecuten el padre debe ser de tipo flex, y como en este caso el padre de los labels cambio de ser form a ser div pues se quedo sin la herencia -->
+                <div>
+                    <!-- en formulario estamos usando dos clases una global para todos los inputs "input" y otra especifica para cada una de ellos, esto con el fin de que podamos realizar ya cambios generales o especificos segun sea la necesidad -->
+                    <label for="name" class="label">Name</label>
+                    <input type="text" id="name" placeholder="Juan Example" class="input input-name">
+    
+                    <label for="email" class="label">Email</label>
+                    <input type="text" id="email" placeholder="algunemail@example.com" class="input input-email">
+    
+                    <label for="password" class="label">password</label>
+                    <input type="password" id="password" placeholder="*********" class="input input-password">
+                </div>
 
-            <h1 class="title">Email has been sent!</h1>
-            <p class="subtitle">Please check your inbox for instrctions on how to reset the password</p>
-            <div class="email-image">
-                <img src="./icons/email.svg" alt="email">
-            </div>
-            <button class="primary-button login-button">Login</button>
-            <p class="resend">
-                <!-- la etiqueta span es para poner en negrita un texto -->
-                <span>Didn't recesive the email?</span>
-                <a href="/">Resend</a>
-            </p>
+                <!-- En un formulario tambien podemos colocar un imput como se fuera un boton. Para poderlo hacer el imput debe ser de tipo submit y esto es gracias a que estamos usando para el formulario la etiqueta form -->
+                <input type="submit" value="Create" class="primary-button login-button">
+            </form>
         </div>
     </div>
 </body>
