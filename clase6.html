@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* variables de color y tamaño */
+            --white: #ffffff;
+            --black: #000000;
+            --very-light-pink: #c7c7c7;
+            --text-input-field: #f7f7f7;
+            --hospital-green: #acd982;
+            --sm: 14px;
+            --md: 16px;
+            --lg: 18px;
+        }
+        body{
+            /* acá le estamos quitando las margenes y trayendo la fuente del proyeco */
+            margin: 0;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .login {
+            /* acá estamos centrando los elementos en el centro de la pantallade una manera super facil
+            solo con dos propiedades. display grid y place-items center */
+            width: 100%;
+            height: 100vh;
+            display: grid;
+            /* place-items, tiene cinco propiedades que deriban de alieng-items y justify-items
+            buscar mas https://developer.mozilla.org/en-US/docs/Web/CSS/place-items
+            1- center: me centra el contenido en toda la mitad de la pantalla sin importar que tan grande es siempre va a estar en el centro 
+            2- center stretch: elementos estan en el centro desde el borde izquierdo ocupando el width del elemento si hay mas elementos se colocan a la izquierda hasta que se acabe el width de la pantalla y si se acaba buelve a iniciar en la fila de abajo desde la izquierda nuevamente 
+            3- center start: elemento aderido encentro izquierda ocupando el espacio del contenido del elemento
+            4- start end: elemento inicio de la pantalla arriba derecha 
+            5- end center: centro de la pantalla abajo de la misma 
+            */
+            place-items: center;
+        }
+        .cards-container {
+            /* para poder empezar a estilizar todas esas imagener o cards de cada producto, lo primero es agarrar el contenedor de las cards y lo que hacemos es generar nuestras grid para que cada una de esas cards quepa en esas grids (cuadriculas) para que los elementos quepan en ellas */
+            display: grid;
+            /* para crear columnas utilizamos grid-template-columns (si queremos 2 colomns del mismo tamaño podríamos ponerles dos propiedades (grid-template-columns: 1fr 1fr) sin embargo en este caso vamos a usar una funcion que se llama REPEAT la  viene con dos parametros el primero es la cantidad de columnas que deseamos y el segundo el tamaño de cada una de esas columnas / ese repeat tiene una propiedad que es AUTO-FILL una propiedad que significa que se va a llenar automaticamente dependiendo de la cantidad que quepa y en el segundo le ponemos el tamaño en pixeles ejemplo 240 px cada una de las cards que se cree va a tener un tamaño de 240px segun este ejemplo )  */
+            grid-template-columns: repeat(AUTO-FILL, 240px);
+            /* la propiedad gap lo que hace es que nos crea un espacio entre todos los hijos dentro del contenedor donde se llama */
+            gap: 26px;
+            place-content: center;
+        }
+        .product-card {
+            /* para que funcione bien grid-template-columns: repeat(AUTO-FILL, 240px) el comando que pusimos en la clase .cards-container debemos darle un tamaño a las cards  */
+            width: 240px;
+        }
+        .product-card img {
+            /* para que funcione bien grid-template-columns: repeat(AUTO-FILL, 240px) el comando que pusimos en la clase .cards-container debemos darle tambien el tamaño a las imagenes que estan dentro de esas cards que puede ser del 100% que quiere decir que puede ser de la misma cantidad del padre*/
+            width: 240px;
+            height: 240px;
+            border-radius: 20px;
+            /* object-fit: cover se usa pra que la imagen no se distorcione por la medida del padre si nos mas bien que se adecue guardando las proporciones de la misma (ojo esto quiere decir que si la imagen es rectangular y el padre es cuadrado la imagen no va a salir completa) */
+            object-fit: cover;
+        }
+        .product-info {
+            /* ponemos display flex para que podamos poner la caja del div que esta dentro de la clase junto al lado de la caja figure que contiene a la img */
+            display: flex;
+            /* space-between lo ponemos para que haya un espacio en la mitad de los dos contenedores o mas bien ubicar los contenedores en extremos opuestos ya sea vertical o horizontal, en este caso horizontal y en el ejemplo de la pantalla de create (cuenta o perfil)vertical */
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+        }
+        .product-info figure {
+            /* aca le quitamos la margen al elemento que esta dentro de la etiqueta figure */
+            margin: 0;
+        }
+        .product-info div p:nth-child(1) {
+            /* el primer parrafo que este dentro de div que este dentro de product-info va a tener los siguientes estilos 
+            el primer cambio es que va a ser mas grueso
+            el segundo cambio es que va a ser mediana la letra
+            el tercero modificacion del margen de arriba
+            el cuarto modificacion del margen de abajo*/
+            font-weight: bold;
+            font-size: var(--md);
+            margin-top: 0px;
+            margin-bottom: 4px;
+        }
+        .product-info div p:nth-child(2) {
+            /* el segundo parrafo que este dentro de div que este dentro de product-info va a tener los siguientes estilos 
+            el primer cambio es que va a ser pequeña la letra
+            el segundo cambio que va a tener margen de arriba de 0
+            el tercer cambio que va a tener margen de abajo de 0
+            el cuarto le cambiamos el color de la letra para que sea mas clara y resalte menos*/
+            font-size: var(--sm);
+            margin-top: 0px;
+            margin-bottom: 0px;
+            color: var(--very-light-pink);
+        }
+        .product-info figure img {
+            /* solamente las imagenes que esten en el contenedor figure dentro de la clase product-info van a resivir las siguientes modificaciones */
+            width: 35px;
+            height: 35px;
+        }
+
+        @media (max-width: 640px) {
+            .cards-container {
+                /* para crear columnas utilizamos grid-template-columns (si queremos 2 colomns del mismo tamaño podríamos ponerles dos propiedades (grid-template-columns: 1fr 1fr) sin embargo en este caso vamos a usar una funcion que se llama REPEAT la  viene con dos parametros el primero es la cantidad de columnas que deseamos y el segundo el tamaño de cada una de esas columnas / ese repeat tiene una propiedad que es AUTO-FILL una propiedad que significa que se va a llenar automaticamente dependiendo de la cantidad que quepa y en el segundo le ponemos el tamaño en pixeles ejemplo 240 px cada una de las cards que se cree va a tener un tamaño de 240px segun este ejemplo )  */
+                /* en el @media cambio el tamaño porque quiero que en movile salgan dos cuadros por fila */
+                grid-template-columns: repeat(AUTO-FILL, 140px);
+            }
+            .product-card {
+                /* para que funcione bien grid-template-columns: repeat(AUTO-FILL, 240px) el comando que pusimos en la clase .cards-container debemos darle un tamaño a las cards  */
+                width: 140px;
+            }
+            .product-card img {
+                /* para que funcione bien grid-template-columns: repeat(AUTO-FILL, 240px) el comando que pusimos en la clase .cards-container debemos darle tambien el tamaño a las imagenes que estan dentro de esas cards que puede ser del 100% que quiere decir que puede ser de la misma cantidad del padre*/
+                width: 140px;
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- esta seccion es creada para poder centrar los div -->
+    <section class="main-container">
+        <!-- este contenedor va a organizar el tema de la grid de nuestros elementos -->
+        <div class="cards-container">
+
+            <div class="product-card">
+                <!-- NOTA IMPORTANTE aca estamos es copiendo la url de la imagen, haciendo click derecho copiar url de imagen -->
+                <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                <!-- este div nos va a ayudar a poner la informacion que va en la parte de abajo de la imagen como precio y descripcion por ejemplo -->
+                <div class="product-info">
+                    <!-- aca creamos la clase product-info para poder manipular los hijos de este div -->
+                    <div>
+                        <p>$120,00</p>
+                        <p>Bike</p>
+                    </div>
+                    <figure>
+                        <img src="./icons/bt_add_to_cart.svg" alt="agregar al carrito">
+                    </figure>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <!-- NOTA IMPORTANTE aca estamos es copiendo la url de la imagen, haciendo click derecho copiar url de imagen -->
+                <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                <!-- este div nos va a ayudar a poner la informacion que va en la parte de abajo de la imagen como precio y descripcion por ejemplo -->
+                <div class="product-info">
+                    <!-- aca creamos la clase product-info para poder manipular los hijos de este div -->
+                    <div>
+                        <p>$120,00</p>
+                        <p>Bike</p>
+                    </div>
+                    <figure>
+                        <img src="./icons/bt_add_to_cart.svg" alt="agregar al carrito">
+                    </figure>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <!-- NOTA IMPORTANTE aca estamos es copiendo la url de la imagen, haciendo click derecho copiar url de imagen -->
+                <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                <!-- este div nos va a ayudar a poner la informacion que va en la parte de abajo de la imagen como precio y descripcion por ejemplo -->
+                <div class="product-info">
+                    <!-- aca creamos la clase product-info para poder manipular los hijos de este div -->
+                    <div>
+                        <p>$120,00</p>
+                        <p>Bike</p>
+                    </div>
+                    <figure>
+                        <img src="./icons/bt_add_to_cart.svg" alt="agregar al carrito">
+                    </figure>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <!-- NOTA IMPORTANTE aca estamos es copiendo la url de la imagen, haciendo click derecho copiar url de imagen -->
+                <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                <!-- este div nos va a ayudar a poner la informacion que va en la parte de abajo de la imagen como precio y descripcion por ejemplo -->
+                <div class="product-info">
+                    <!-- aca creamos la clase product-info para poder manipular los hijos de este div -->
+                    <div>
+                        <p>$120,00</p>
+                        <p>Bike</p>
+                    </div>
+                    <figure>
+                        <img src="./icons/bt_add_to_cart.svg" alt="agregar al carrito">
+                    </figure>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <!-- NOTA IMPORTANTE aca estamos es copiendo la url de la imagen, haciendo click derecho copiar url de imagen -->
+                <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                <!-- este div nos va a ayudar a poner la informacion que va en la parte de abajo de la imagen como precio y descripcion por ejemplo -->
+                <div class="product-info">
+                    <!-- aca creamos la clase product-info para poder manipular los hijos de este div -->
+                    <div>
+                        <p>$120,00</p>
+                        <p>Bike</p>
+                    </div>
+                    <figure>
+                        <img src="./icons/bt_add_to_cart.svg" alt="agregar al carrito">
+                    </figure>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <!-- NOTA IMPORTANTE aca estamos es copiendo la url de la imagen, haciendo click derecho copiar url de imagen -->
+                <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                <!-- este div nos va a ayudar a poner la informacion que va en la parte de abajo de la imagen como precio y descripcion por ejemplo -->
+                <div class="product-info">
+                    <!-- aca creamos la clase product-info para poder manipular los hijos de este div -->
+                    <div>
+                        <p>$120,00</p>
+                        <p>Bike</p>
+                    </div>
+                    <figure>
+                        <img src="./icons/bt_add_to_cart.svg" alt="agregar al carrito">
+                    </figure>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <!-- NOTA IMPORTANTE aca estamos es copiendo la url de la imagen, haciendo click derecho copiar url de imagen -->
+                <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                <!-- este div nos va a ayudar a poner la informacion que va en la parte de abajo de la imagen como precio y descripcion por ejemplo -->
+                <div class="product-info">
+                    <!-- aca creamos la clase product-info para poder manipular los hijos de este div -->
+                    <div>
+                        <p>$120,00</p>
+                        <p>Bike</p>
+                    </div>
+                    <figure>
+                        <img src="./icons/bt_add_to_cart.svg" alt="agregar al carrito">
+                    </figure>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <!-- NOTA IMPORTANTE aca estamos es copiendo la url de la imagen, haciendo click derecho copiar url de imagen -->
+                <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                <!-- este div nos va a ayudar a poner la informacion que va en la parte de abajo de la imagen como precio y descripcion por ejemplo -->
+                <div class="product-info">
+                    <!-- aca creamos la clase product-info para poder manipular los hijos de este div -->
+                    <div>
+                        <p>$120,00</p>
+                        <p>Bike</p>
+                    </div>
+                    <figure>
+                        <img src="./icons/bt_add_to_cart.svg" alt="agregar al carrito">
+                    </figure>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <!-- NOTA IMPORTANTE aca estamos es copiendo la url de la imagen, haciendo click derecho copiar url de imagen -->
+                <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                <!-- este div nos va a ayudar a poner la informacion que va en la parte de abajo de la imagen como precio y descripcion por ejemplo -->
+                <div class="product-info">
+                    <!-- aca creamos la clase product-info para poder manipular los hijos de este div -->
+                    <div>
+                        <p>$120,00</p>
+                        <p>Bike</p>
+                    </div>
+                    <figure>
+                        <img src="./icons/bt_add_to_cart.svg" alt="agregar al carrito">
+                    </figure>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <!-- NOTA IMPORTANTE aca estamos es copiendo la url de la imagen, haciendo click derecho copiar url de imagen -->
+                <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                <!-- este div nos va a ayudar a poner la informacion que va en la parte de abajo de la imagen como precio y descripcion por ejemplo -->
+                <div class="product-info">
+                    <!-- aca creamos la clase product-info para poder manipular los hijos de este div -->
+                    <div>
+                        <p>$120,00</p>
+                        <p>Bike</p>
+                    </div>
+                    <figure>
+                        <img src="./icons/bt_add_to_cart.svg" alt="agregar al carrito">
+                    </figure>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <!-- NOTA IMPORTANTE aca estamos es copiendo la url de la imagen, haciendo click derecho copiar url de imagen -->
+                <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                <!-- este div nos va a ayudar a poner la informacion que va en la parte de abajo de la imagen como precio y descripcion por ejemplo -->
+                <div class="product-info">
+                    <!-- aca creamos la clase product-info para poder manipular los hijos de este div -->
+                    <div>
+                        <p>$120,00</p>
+                        <p>Bike</p>
+                    </div>
+                    <figure>
+                        <img src="./icons/bt_add_to_cart.svg" alt="agregar al carrito">
+                    </figure>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <!-- NOTA IMPORTANTE aca estamos es copiendo la url de la imagen, haciendo click derecho copiar url de imagen -->
+                <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                <!-- este div nos va a ayudar a poner la informacion que va en la parte de abajo de la imagen como precio y descripcion por ejemplo -->
+                <div class="product-info">
+                    <!-- aca creamos la clase product-info para poder manipular los hijos de este div -->
+                    <div>
+                        <p>$120,00</p>
+                        <p>Bike</p>
+                    </div>
+                    <figure>
+                        <img src="./icons/bt_add_to_cart.svg" alt="agregar al carrito">
+                    </figure>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <!-- NOTA IMPORTANTE aca estamos es copiendo la url de la imagen, haciendo click derecho copiar url de imagen -->
+                <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                <!-- este div nos va a ayudar a poner la informacion que va en la parte de abajo de la imagen como precio y descripcion por ejemplo -->
+                <div class="product-info">
+                    <!-- aca creamos la clase product-info para poder manipular los hijos de este div -->
+                    <div>
+                        <p>$120,00</p>
+                        <p>Bike</p>
+                    </div>
+                    <figure>
+                        <img src="./icons/bt_add_to_cart.svg" alt="agregar al carrito">
+                    </figure>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <!-- NOTA IMPORTANTE aca estamos es copiendo la url de la imagen, haciendo click derecho copiar url de imagen -->
+                <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                <!-- este div nos va a ayudar a poner la informacion que va en la parte de abajo de la imagen como precio y descripcion por ejemplo -->
+                <div class="product-info">
+                    <!-- aca creamos la clase product-info para poder manipular los hijos de este div -->
+                    <div>
+                        <p>$120,00</p>
+                        <p>Bike</p>
+                    </div>
+                    <figure>
+                        <img src="./icons/bt_add_to_cart.svg" alt="agregar al carrito">
+                    </figure>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <!-- NOTA IMPORTANTE aca estamos es copiendo la url de la imagen, haciendo click derecho copiar url de imagen -->
+                <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                <!-- este div nos va a ayudar a poner la informacion que va en la parte de abajo de la imagen como precio y descripcion por ejemplo -->
+                <div class="product-info">
+                    <!-- aca creamos la clase product-info para poder manipular los hijos de este div -->
+                    <div>
+                        <p>$120,00</p>
+                        <p>Bike</p>
+                    </div>
+                    <figure>
+                        <img src="./icons/bt_add_to_cart.svg" alt="agregar al carrito">
+                    </figure>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <!-- NOTA IMPORTANTE aca estamos es copiendo la url de la imagen, haciendo click derecho copiar url de imagen -->
+                <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                <!-- este div nos va a ayudar a poner la informacion que va en la parte de abajo de la imagen como precio y descripcion por ejemplo -->
+                <div class="product-info">
+                    <!-- aca creamos la clase product-info para poder manipular los hijos de este div -->
+                    <div>
+                        <p>$120,00</p>
+                        <p>Bike</p>
+                    </div>
+                    <figure>
+                        <img src="./icons/bt_add_to_cart.svg" alt="agregar al carrito">
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
