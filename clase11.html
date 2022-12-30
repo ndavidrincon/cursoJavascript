@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* variables de color y tamaño */
+            --white: #ffffff;
+            --black: #000000;
+            --very-light-pink: #c7c7c7;
+            --text-input-field: #f7f7f7;
+            --hospital-green: #acd982;
+            --sm: 14px;
+            --md: 16px;
+            --lg: 18px;
+        }
+        body{
+            /* acá le estamos quitando las margenes y trayendo la fuente del proyeco */
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            height: 100%;
+        }
+        nav {
+            /* cuando ponemos displey flex, en teorio se tendrian que ubicar los elementos uno al lado del otro, pero por alguna razon queda el elemento que va primero mas abajo que el segundo  
+            esto pasaba porque a uno de los hijos les faltaba displey flex */
+            display: flex;
+            justify-content: space-between;
+            padding: 0 24px;
+            border-bottom: 1px solid var(--very-light-pink);
+        }
+        .menu {
+            display: none;
+        }
+        .logo {
+            width: 100px;
+        }
+        .navbar-left ul,
+        .navbar-right ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            height: 60px;
+        }
+        .navbar-left{
+            display: flex;
+        }
+        .navbar-left ul{
+            display: flex;
+            margin-left: 12PX;
+        }
+        .navbar-left ul li a {
+            text-decoration: none;
+            color: var(--very-light-pink);
+            border: 1px solid var(--white);
+            padding: 8px;
+        }
+        .navbar-left ul li a:hover {
+            /* recordemos que la pseudoclase hover hace que cambie el color del elemento una vez yo paso el cursor por arriba del elemento afectado */
+            color: var(--hospital-green);
+            border: 1px solid var(--hospital-green);
+            padding: 8px;
+            border-radius: 8px;
+        }
+        .navbar-email {
+            color: var(--very-light-pink);
+            font-size: var(--sm);
+            margin-right: 8px;
+        }
+        .navbar-shopping-cart {
+            position: relative;
+        }
+        .navbar-shopping-cart div {
+            /* antes de poner displey felx no me centraba el numero 2, es decir el contenido del div, segun el inspector era porque tenia propiedades de block, entonces tenia que volverlo despley flex para que las propiedades justify-content se aplicaran */
+            display: flex;
+            width: 16px;
+            height: 16px;
+            background-color: var(--hospital-green);
+            border-radius: 50%;
+            font-size: var(--sm);
+            font-weight: bold;
+            /* cuando ponemos absolute, es porque queremos que el contenido de la etiqueta en el mismo espacio del padre, para esto el padre debe ser relative */
+            position: absolute;
+            top: -6px;
+            right: -3px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media (max-width: 640px) {
+            .menu {
+                display: block;
+            }
+            .navbar-left ul {
+                display: none;
+            }
+            .navbar-email {
+                display: none;
+            }
+        }
+    </style>    
+</head>
+<body>
+    <nav>
+        <img src="./icons/icon_menu.svg" alt="menu" class="menu">
+        <!-- aca lo que estamos haciendo es dividir lo que queremos que nos aparezca a la izquierda o a la derecha del codigo -->
+        <div class="navbar-left">
+            <img src="./logos/logo_yard_sale.svg" alt="logo" class="logo">
+            
+            <ul>
+                <li>
+                    <a href="/">All</a>
+                </li>
+                <li>
+                    <a href="/">Clothe</a>
+                </li>
+                <li>
+                    <a href="/">Electronics</a>
+                </li>
+                <li>
+                    <a href="/">Furnitures</a>
+                </li>
+                <li>
+                    <a href="/">Toys</a>
+                </li>
+                <li>
+                    <a href="/">Others</a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-right">
+            <ul>
+                <li class="navbar-email">correo@example.com</li>
+                <li class="navbar-shopping-cart">
+                    <img src="./icons/icon_shopping_cart.svg" alt="icon shopping cart">
+                    <div>2</div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</body>
+</html>
