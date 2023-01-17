@@ -1,0 +1,143 @@
+:root {
+    /* variables de color y tamaño */
+    --white: #ffffff;
+    --black: #000000;
+    --very-light-pink: #c7c7c7;
+    --text-input-field: #f7f7f7;
+    --hospital-green: #acd982;
+    --sm: 14px;
+    --md: 16px;
+    --lg: 18px;
+}
+body{
+    /* acá le estamos quitando las margenes y trayendo la fuente del proyeco */
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+}
+.inactive {
+    display: none;
+}
+nav {
+    /* cuando ponemos displey flex, en teorio se tendrian que ubicar los elementos uno al lado del otro, pero por alguna razon queda el elemento que va primero mas abajo que el segundo  
+    esto pasaba porque a uno de los hijos les faltaba displey flex */
+    display: flex;
+    justify-content: space-between;
+    padding: 0 24px;
+    border-bottom: 1px solid var(--very-light-pink);
+}
+.menu {
+    display: none;
+}
+.logo {
+    width: 100px;
+}
+.navbar-left ul,
+.navbar-right ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    height: 60px;
+}
+.navbar-left{
+    display: flex;
+}
+.navbar-left ul{
+    display: flex;
+    margin-left: 12PX;
+}
+.navbar-left ul li a {
+    text-decoration: none;
+    color: var(--very-light-pink);
+    border: 1px solid var(--white);
+    padding: 8px;
+}
+.navbar-left ul li a:hover {
+    /* recordemos que la pseudoclase hover hace que cambie el color del elemento una vez yo paso el cursor por arriba del elemento afectado */
+    color: var(--hospital-green);
+    border: 1px solid var(--hospital-green);
+    padding: 8px;
+    border-radius: 8px;
+}
+.navbar-email {
+    color: var(--very-light-pink);
+    font-size: var(--sm);
+    margin-right: 8px;
+}
+.navbar-email:hover {
+    color: var(--hospital-green);
+    cursor: pointer;
+}
+.navbar-shopping-cart {
+    position: relative;
+}
+.navbar-shopping-cart div {
+    /* antes de poner displey felx no me centraba el numero 2, es decir el contenido del div, segun el inspector era porque tenia propiedades de block, entonces tenia que volverlo despley flex para que las propiedades justify-content se aplicaran */
+    display: flex;
+    width: 16px;
+    height: 16px;
+    background-color: var(--hospital-green);
+    border-radius: 50%;
+    font-size: var(--sm);
+    font-weight: bold;
+    /* cuando ponemos absolute, es porque queremos que el contenido de la etiqueta en el mismo espacio del padre, para esto el padre debe ser relative */
+    position: absolute;
+    top: -6px;
+    right: -3px;
+    justify-content: center;
+    align-items: center;
+}
+
+.desktop-menu {
+    position: absolute;
+    background: var(--white);
+    top: 60px;
+    right: 60px;
+    width: 100px;
+    height: auto;
+    border: 1px solid var(--very-light-pink);
+    border-radius: 6px;
+    padding: 20px 20px 0 20px;
+}
+.desktop-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+}
+.desktop-menu ul li {
+    text-align: end;
+}
+.desktop-menu ul li:nth-child(1),
+.desktop-menu ul li:nth-child(2) {
+    font-weight: bold;
+}
+.desktop-menu ul li:last-child {
+    /* aca estamos estilizando last child que significa el ultimo hijo de la lista */
+    padding-top: 20px;
+    border-top: 1px solid var(--very-light-pink);
+}
+.desktop-menu ul li:last-child a {
+    /* aca estamos estilizando last child que significa el ultimo hijo de la lista */
+    color: var(--hospital-green);
+    font-size: var(--sm);
+}
+.desktop-menu ul li a {
+    color: var(--black);
+    text-decoration: none;
+    margin-bottom: 20px; /*la etiqueta *a* es un elemento inline por lo tanto debemos decirle que es un elemento inline pero que tenga caracteristicas de bloque con display: inline-blok */
+    display: inline-block;
+}
+
+@media (max-width: 640px) {
+    .menu {
+        display: block;
+    }
+    .navbar-left ul {
+        display: none;
+    }
+    .navbar-email {
+        display: none;
+    }
+}
