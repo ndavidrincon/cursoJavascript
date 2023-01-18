@@ -1,4 +1,9 @@
-:root {
+/* Estilos general  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}:root {
     /* variables de color y tamaño */
     --white: #ffffff;
     --black: #000000;
@@ -17,6 +22,9 @@ body{
 .inactive {
     display: none;
 }
+
+/* estilos nav bar general */
+
 nav {
     /* cuando ponemos displey flex, en teorio se tendrian que ubicar los elementos uno al lado del otro, pero por alguna razon queda el elemento que va primero mas abajo que el segundo  
     esto pasaba porque a uno de los hijos les faltaba displey flex */
@@ -27,6 +35,7 @@ nav {
 }
 .menu {
     display: none;
+    cursor: pointer;
 }
 .logo {
     width: 100px;
@@ -89,12 +98,14 @@ nav {
     align-items: center;
 }
 
+/* menu del desktop */
+
 .desktop-menu {
     position: absolute;
     background: var(--white);
     top: 60px;
     right: 60px;
-    width: 100px;
+    width: 140px;
     height: auto;
     border: 1px solid var(--very-light-pink);
     border-radius: 6px;
@@ -130,14 +141,57 @@ nav {
     display: inline-block;
 }
 
+/* Menu del mobile */
+
+.mobile-menu {
+    position: absolute;
+    top: 60px;
+    /* box-sizing: border-box lo que hace es que incluye el tamaño del padding al tamaño del contenido para que no la caja no se agrande y tengamos problemas con el responsive, porque cuando le agregamos padding al contenedor externo y le ponemos un heigth del 100% realmente queda el 100% mas los px que se le pongan al padding y por lo tanto va a quedar con un scroll no tan chevere :S */
+    height: 90vh;
+    /* display: flex;
+     flex por defecto viene para ubicar llos contenedores uno al lado del otro con flex-direction le cambiamos la direccion para que se puedan ubicar uno abajo de otro con column 
+    flex-direction: column;
+    justify-content: space-between; */
+
+    /* toco comentar esto porque de lo contrario no funciona la clase inactive */
+}
+.mobile-menu a {
+    text-decoration: none;
+    color: var(--black);
+    font-weight: bold;
+}
+.mobile-menu ul {
+    padding: 0;
+    /* margin: 24px 0 0; */
+    list-style: none;
+}
+.mobile-menu ul:nth-child(1) {
+    border-bottom: 1px solid var(--very-light-pink);
+}
+.mobile-menu ul li{
+    margin: 24px;
+}
+.mobile-menu .email {
+    font-size: var(--sm);
+    font-weight: 300;
+}
+.mobile-menu .sign-out {
+    font-size: var(--sm);
+    color: var(--hospital-green);
+}
+ 
 @media (max-width: 640px) {
     .menu {
         display: block;
     }
-    .navbar-left ul {
+    .navbar-left ul, 
+    .navbar-email,
+    .desktop-menu {
         display: none;
     }
-    .navbar-email {
+}
+@media (min-width: 641px) {
+    .mobile-menu {
         display: none;
     }
 }
