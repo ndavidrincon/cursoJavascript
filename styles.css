@@ -80,6 +80,7 @@ nav {
 }
 .navbar-shopping-cart {
     position: relative;
+    cursor: pointer;
 }
 .navbar-shopping-cart div {
     /* antes de poner displey felx no me centraba el numero 2, es decir el contenido del div, segun el inspector era porque tenia propiedades de block, entonces tenia que volverlo despley flex para que las propiedades justify-content se aplicaran */
@@ -148,6 +149,7 @@ nav {
     top: 60px;
     /* box-sizing: border-box lo que hace es que incluye el tamaño del padding al tamaño del contenido para que no la caja no se agrande y tengamos problemas con el responsive, porque cuando le agregamos padding al contenedor externo y le ponemos un heigth del 100% realmente queda el 100% mas los px que se le pongan al padding y por lo tanto va a quedar con un scroll no tan chevere :S */
     height: 90vh;
+    background-color: var(--white);
     /* display: flex;
      flex por defecto viene para ubicar llos contenedores uno al lado del otro con flex-direction le cambiamos la direccion para que se puedan ubicar uno abajo de otro con column 
     flex-direction: column;
@@ -180,6 +182,84 @@ nav {
     color: var(--hospital-green);
 }
  
+/* produc detail y carrito */
+
+.product-detail {
+    width: 360px;
+    padding: 4px 24px;
+    position: absolute;
+    right: 0;
+    background-color: var(--white);
+}
+.title-container {
+    display: flex;
+}
+.title-container img {
+    transform: rotate(180deg);
+    margin-right: 14px;
+}
+.title {
+    font-size: var(--lg);
+    font-weight: bold;
+}
+.order {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    align-items: center;
+    background-color: var(--text-input-field);
+    margin-bottom: 24px;
+    border-radius: 8px;
+    padding: 0 24px;
+}
+.order p:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+}
+.order p:nth-child(2) {
+    text-align: end;
+    font-weight: bold;
+}
+.order span:nth-child(1) {
+    font-size: var(--md); 
+    font-weight: bold;
+}
+.shopping-cart {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: 16px;
+    margin-bottom: 24px;
+    align-items: center;
+}
+.shopping-cart figure{
+    margin: 0;
+}
+.shopping-cart figure img{
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+.shopping-cart p:nth-child(2){
+    color: var(--very-light-pink);
+}
+.shopping-cart p:nth-child(3){
+    font-size: var(--md);
+    font-weight: bold;
+}
+.primary-button {
+    background-color: var(--hospital-green);
+    border-radius: 8px;
+    /* quita el borde negro que viene por defecto para poder que quede es solo badgraund-color que nosotros le pusimos */
+    border: none;
+    color: var(--white);
+    width: 100%;
+    /* este cursor pointer es para que caundo pasemos por arriba del boton ya no me salga la flecha sino una manito indicando que estoy arriba del boton */
+    cursor: pointer;
+    font-size: var(--md);
+    font-weight: bold;
+    height: 50px;
+}
 @media (max-width: 640px) {
     .menu {
         display: block;
@@ -188,6 +268,9 @@ nav {
     .navbar-email,
     .desktop-menu {
         display: none;
+    }
+    .product-detail {
+        width: 100%;
     }
 }
 @media (min-width: 641px) {
