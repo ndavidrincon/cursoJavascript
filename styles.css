@@ -324,6 +324,83 @@ nav {
     height: 35px;
 }
 
+/* extended-product-detail */
+
+.extended-product-detail {
+    background-color: var(--white);
+    width: 360px;
+    padding-bottom: 24px;
+    position: absolute;
+    right: 0;
+}
+.product-detail-close {
+    background: var(--white);
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    /* position absolute siempre ubica al elemento en la posicion 0,0 del padre a partir de ahi comenzamos a moverlo con los atributos de abajo */
+    top: 24px;
+    left: 24px;
+    /* z-index indica el orden de un elemento posicionado y sus descendientes. Cuando varios elementos se superponen, los elementos con mayor valor z-index cubren aquellos con menor valor. */
+    z-index: 2;
+    padding: 12px;
+    border-radius: 50%;
+    display:flex
+}
+.product-detail-close:hover {
+    cursor: pointer;
+}
+.product-detail-close img {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
+.extended-product-detail > img:nth-child(2) {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    border-radius: 0 0 24px 24px;
+}
+.extended-product-info {
+    margin: 24px 24px 0 24px;
+}
+.extended-product-info p:nth-child(1) {
+    font-weight: bold;
+    font-size: var(--md);
+    margin-top: 0;
+    margin-bottom: 4px;
+}
+.extended-product-info p:nth-child(2) {
+    color: var(--very-light-pink);
+    font-size: var(--md);
+    margin-top: 0;
+    margin-bottom: 36px;
+}
+.extended-product-info p:nth-child(3) {
+    color: var(--very-light-pink);
+    font-size: var(--sm);
+    margin-top: 0;
+    margin-bottom: 36px;
+}
+.primary-button {
+    background-color: var(--hospital-green);
+    border-radius: 8px;
+    /* quita el borde negro que viene por defecto para poder que quede es solo badgraund-color que nosotros le pusimos */
+    border: none;
+    color: var(--white);
+    width: 100%;
+    /* este cursor pointer es para que caundo pasemos por arriba del boton ya no me salga la flecha sino una manito indicando que estoy arriba del boton */
+    cursor: pointer;
+    font-size: var(--md);
+    font-weight: bold;
+    height: 50px;
+}
+.add-to-cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @media (max-width: 640px) {
     .menu {
         display: block;
@@ -333,7 +410,8 @@ nav {
     .desktop-menu {
         display: none;
     }
-    .product-detail {
+    .product-detail,
+    .extended-product-detail {
         width: 100%;
     }
     .cards-container {

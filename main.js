@@ -4,11 +4,13 @@ const menuCarritoIcon = document.querySelector(".navbar-shopping-cart")
 const burgerIcon = document.querySelector(".menu");
 const mobileMenu = document.querySelector(".mobile-menu");
 const aside = document.querySelector(".product-detail");
+const extendedProductDetail = document.querySelector(".extended-product-detail");
 const cardsContainer = document.querySelector(".cards-container");
 
 menuEmail.addEventListener("click", toggleDesktopMenu);
 burgerIcon.addEventListener("click", toggleMobileMenu);
 menuCarritoIcon.addEventListener("click", toggleCarritoAside);
+
 
 function toggleDesktopMenu () {
     const isMenuCarritoIconClosed = menuCarritoIcon.classList.contains("inactive");
