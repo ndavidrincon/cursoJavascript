@@ -60,46 +60,32 @@ productList.push ({
 
 function renderProducts (arr) {
     for (product of arr) {
-        console.log("entro a la funcion")
-        // Nos ayuda a crear cada uno de nuestros elementos de html pero usando js
-        const productCard = document.createElement("div"); // Estoy creando el div donde va a quedar la clase product-card
-        productCard.classList.add("product-card");
-    
-        // product= {name, price, image} -> product.image
-        const productImg = document.createElement("img");
-        productImg.setAttribute("src", product.image);
-    
-        const productInfo = document.createElement("div");
-        productInfo.classList.add("product-info");
-    
-        
-        const productInfoDiv = document.createElement("div");
-        
-        const productPrice = document.createElement("p");
-        productPrice.innerText = "$" + product.price; 
-        const productName = document.createElement("p");
-        productName.innerText = product.name;
-        productInfoDiv.appendChild(productPrice);
-        productInfoFigure.appendChild(productName);
-        
-        productInfoDiv.appendChild(productPrice);
-        productInfoDiv.appendChild(productName);
-    
-        const productInfoFigure = document.createElement("figure");
-        const productImgCart = document.createElement("img");
 
-        img.setAttribute("src", "./icons/bt_add_to_cart.svg");
-    
+        const productCard=document.createElement('div');
+        productCard.classList.add('product-card');
+
+        productImg = document.createElement('img');
+        productImg.setAttribute('src',product.image);
+
+        const productInfo = document.createElement('div');
+        productInfo.classList.add('product-info');
+
+        const productInfoDiv = document.createElement('div');
+        const productPrice = document.createElement('p');
+        productPrice.innerText ='$'+product.price;
+        const productName = document.createElement('p');
+        productName.innerText = product.name;
+        productInfoDiv.append(productPrice, productName);
+
+        const productInfoFigure = document.createElement('figure');
+
+        const productImgCart = document.createElement('img');
+        productImgCart.setAttribute('src','./icons/bt_add_to_cart.svg');
+
         productInfoFigure.appendChild(productImgCart);
-    
-        productInfo.appendChild(productInfoDiv);
-        productInfo.appendChild(productInfoFigure);
-    
-        // tenemos que insertar productInfo y ProductImage a dentro de productCart
-        productCard.appendChild(productImg);
-        productCard.appendChild(productInfo);
-    
-        cardsContainer.appendChild(productCard);
+        productInfo.append(productInfoDiv, productInfoFigure);
+        productCard.append(productImg, productInfo);
+        cardsContainer.appendChild(productCard);       
     };
 }
 
