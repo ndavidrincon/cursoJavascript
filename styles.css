@@ -145,6 +145,7 @@ nav {
 /* Menu del mobile */
 
 .mobile-menu {
+    width: 100%;
     position: absolute;
     top: 61px;
     /* box-sizing: border-box lo que hace es que incluye el tamaño del padding al tamaño del contenido para que no la caja no se agrande y tengamos problemas con el responsive, porque cuando le agregamos padding al contenedor externo y le ponemos un heigth del 100% realmente queda el 100% mas los px que se le pongan al padding y por lo tanto va a quedar con un scroll no tan chevere :S */
@@ -291,6 +292,8 @@ nav {
     justify-content: space-between;
     align-items: center;
     margin-top: 12px;
+    padding: 0 8px 0 8px;
+
 }
 .product-info figure {
     /* aca le quitamos la margen al elemento que esta dentro de la etiqueta figure */
